@@ -21,7 +21,8 @@
   "homepage": "https://github.com/jeffgrasso42/vintage_todo_list#readme",
   "dependencies": {
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "sequelize": "^6.25.5"
   },
   "devDependencies": {
     "eslint": "^8.27.0",
