@@ -51,4 +51,17 @@ router.post('/login', async (req, res) => {
     res.status(200).json({ message: 'successfully logged in' });
   });
 });
+
+// GET /api/users/logout - logout user
+router.get('/logout', async (req, res) => {
+  // add user info to the session
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
 module.exports = router;
