@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "eslint",
+    "test": "eslint **/*.js",
     "start": "node server.js",
     "watch": "nodemon server.js"
   },
