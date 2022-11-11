@@ -1,0 +1,36 @@
+<h1>I'm the login page</h1>
+<div class="window" style="width: 400px">
+  <div class="title-bar">
+    <div class="title-bar-text">A Window With Tabs and Groups</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <menu role="tablist">
+      <button aria-selected="true" aria-controls="music">Todos</button>
+    </menu>
+    <article role="tabpanel" id="music">
+        <p>You've got some stuff to do...</p>
+        <fieldset>
+          <legend>Today's Todos</legend>
+          
+          <div class="field-row">
+            <input type="checkbox" id="example1">
+            <label for="example1">This is a checkbox</label>
+          </div>
+
+        </fieldset>
+        <section class="field-row">
+          <button>Reset Alarm...</button>
+          <label>Try this to get some attention</label>
+        </section>
+      </article>
+    <section class="field-row" style="justify-content: flex-end">
+      <button>OK</button>
+      <button>Cancel</button>
+    </section>
+  </div>
+</div>

@@ -1,11 +1,16 @@
 const express = require('express');
 const session = require('express-session');
+const path = require('path');
 require('dotenv').config();
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const routes = require('./controls');
+const { create } = require('express-handlebars');
 
 const app = express();
+const hbs = create({
+  mainLayout: 'main.handlebars',
+});
 const PORT = process.env.PORT || 3000;
 
 const sess = {
@@ -25,10 +30,31 @@ const sess = {
 
 app.use(session(sess));
 
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+// app.set('views', './views');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  '/assets/css/base/',
+  express.static(path.join(__dirname, 'node_modules', 'xp.css', 'dist'))
+);
+app.use(express.static(path.join(__dirname, './public')));
 
 app.use(routes);
+
+app.get('/', (req, res) => {
+  res.render('login');
+});
+
+app.get('/register', (req, res) => {
+  res.render('register');
+});
+
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard');
+});
 
 app.get('*', (req, res) => {
   res.status(404).send('page not found');
