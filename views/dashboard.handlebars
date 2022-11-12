@@ -1,4 +1,3 @@
-<h1>I'm the login page</h1>
 <div class="window" style="width: 400px">
   <div class="title-bar">
     <div class="title-bar-text">A Window With Tabs and Groups</div>
@@ -16,12 +15,12 @@
         <p>You've got some stuff to do...</p>
         <fieldset>
           <legend>Today's Todos</legend>
-          
+          {{#each todos as |todo|}}
           <div class="field-row">
-            <input type="checkbox" id="example1">
-            <label for="example1">This is a checkbox</label>
+            <input type="checkbox" id="item-{{id}}">
+            <label for="example1">{{title}}</label>
           </div>
-
+          {{/each}}
         </fieldset>
         <section class="field-row">
           <button>Reset Alarm...</button>

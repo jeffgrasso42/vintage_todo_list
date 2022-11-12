@@ -44,22 +44,6 @@ app.use(express.static(path.join(__dirname, './public')));
 
 app.use(routes);
 
-app.get('/', (req, res) => {
-  res.render('login');
-});
-
-app.get('/register', (req, res) => {
-  res.render('register');
-});
-
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard');
-});
-
-app.get('*', (req, res) => {
-  res.status(404).send('page not found');
-});
-
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`Running on port ${PORT}`);
