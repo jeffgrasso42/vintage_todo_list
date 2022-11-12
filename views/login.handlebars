@@ -1,0 +1,32 @@
+<div class="window" style="width: 400px">
+  <div class="title-bar">
+    <div class="title-bar-text">The Vintage Todo List</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <form id="login-form">
+      <menu role="tablist">
+        <button aria-selected="true" aria-controls="music">Todos</button>
+      </menu>
+      <article role="tabpanel" id="music">
+          <p>Please login to do stuff...</p>
+          <div class="field-row-stacked" style="width: 200px">
+            <label for="username">Username</label>
+            <input id="username" type="text" />
+          </div>
+          <div class="field-row-stacked" style="width: 200px">
+            <label for="password">Password</label>
+            <input id="password" type="password" />
+          </div>
+      </article>
+      <section class="field-row" style="justify-content: flex-end">
+        <button type="submit ">OK</button>
+        <button>Cancel</button>
+      </section>
+    </form>
+  </div>
+</div>
