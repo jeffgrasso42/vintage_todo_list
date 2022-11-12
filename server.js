@@ -40,7 +40,7 @@ app.use(
   '/assets/css/base/',
   express.static(path.join(__dirname, 'node_modules', 'xp.css', 'dist'))
 );
-app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
