@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "eslint **/*.js",
+    "test": "eslint",
     "start": "node server.js",
     "watch": "nodemon server.js",
     "seed": "nodemon seeds/index.js"
@@ -13,7 +13,6 @@
     "type": "git",
     "url": "git+https://github.com/jeffgrasso42/vintage_todo_list.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {

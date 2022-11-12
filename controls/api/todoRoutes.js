@@ -12,7 +12,9 @@ router.get('/', async (req, res) => {
     });
     res.status(200).json(todos);
   } catch (err) {
-    res.status(400).json({ err, message: 'No todos found for user' });
+    res
+      .status(400)
+      .json({ err, msg: 'perhaps did not find any todos for that user' });
   }
 });
 
@@ -25,12 +27,19 @@ router.get('/:todoId', async (req, res) => {
         user_id: req.session.userId,
       },
     });
-    console.log(todo);
+
+    if (!todo) {
+      return res.status(404).json({
+        msg: 'perhaps user has no todo with this id',
+      });
+    }
+
     res.status(200).json(todo);
   } catch (err) {
-    res
-      .status(500)
-      .json({ err, message: 'User does not own a todo with this id' });
+    res.status(500).json({
+      err,
+      msg: 'server error',
+    });
   }
 });
 
@@ -62,9 +71,9 @@ router.put('/:todoId', async (req, res) => {
       }
     );
     if (!updatedTodo[0]) {
-      res
-        .status(404)
-        .json({ message: 'Perhaps no todo was found with that id' });
+      return res.status(404).json({
+        msg: 'the todo with this id was not found (for this user)',
+      });
     }
     res.status(200).json(updatedTodo);
   } catch (err) {
@@ -82,9 +91,9 @@ router.delete('/:todoId', async (req, res) => {
       },
     });
     if (!destroyedTodo) {
-      res
-        .status(404)
-        .json({ message: 'Perhaps no todo was found with that id' });
+      return res.status(404).json({
+        msg: 'the todo with this id was not found (for this user)',
+      });
     }
     res.status(200).json(destroyedTodo);
   } catch (err) {

@@ -10,17 +10,26 @@
   <div class="window-body">
     <menu role="tablist">
       <button aria-selected="true" aria-controls="music">Todos</button>
+
     </menu>
     <article role="tabpanel" id="music">
+        <form id="new-todo">
+          <div class="field-row-stacked" style="width: 300px">
+            <label for="new-todo-input">Add New Todo</label>
+            <input id="new-todo-input" type="text" />
+            <button style="width: 80px">Add Todo</button>
+          </div>
+        </form>
         <p>You've got some stuff to do...</p>
         <fieldset>
           <legend>Today's Todos</legend>
           {{#each todos as |todo|}}
-          <div class="field-row">
-            <input type="checkbox" id="item-{{id}}">
-            <label for="example1">{{title}}</label>
+          <div class="field-row" id="todo-list-items">
+            <input type="checkbox" id="item-{{id}}" data-todo-id="{{id}}" {{#if complete}}checked{{/if}}>
+            <label for="item-{{id}}">{{title}}</label>  
           </div>
-          {{/each}}
+          {{/each }}
+
         </fieldset>
         <section class="field-row">
           <button>Reset Alarm...</button>
@@ -28,8 +37,8 @@
         </section>
       </article>
     <section class="field-row" style="justify-content: flex-end">
-      <button>OK</button>
-      <button>Cancel</button>
+      <button id="logout">Logout</button>
     </section>
   </div>
 </div>
+<script src="/assets/js/dashboard.js"></script>

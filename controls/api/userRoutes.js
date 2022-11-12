@@ -1,10 +1,9 @@
-const User = require('../../models/User');
-
 const router = require('express').Router();
+const User = require('../../models/User');
 
 // POST /api/users - makes a new user
 router.post('/', async (req, res) => {
-  // get user data from req.body
+  // get user data from the req.body
   const { username, password } = req.body;
   // create a new user
   const user = await User.create({
@@ -15,47 +14,52 @@ router.post('/', async (req, res) => {
   req.session.save(() => {
     req.session.loggedIn = true;
     req.session.userId = user.id;
-    // send user info back
     res.json(user);
   });
 });
 
 // POST /api/users/login - logs a user in
 router.post('/login', async (req, res) => {
-  // get user data from req.body
+  // get user data from the req.body
   const { username, password } = req.body;
   // create a new user
   const user = await User.findOne({
-    where: { username: username },
+    where: {
+      username: username,
+    },
   });
 
-  // does the user exist
+  // does the user exist?
+  // no? send back a 404
   if (!user) {
-    // no? send back a 404
-    return res.status(404).json({ message: 'user not found' });
+    return res.status(404).json({
+      message: 'User not found',
+    });
   }
 
-  // is the password correct?
+  // is the password correct
+  // no? send back 401
   if (!user.checkPassword(password)) {
-    return res
-      .status(401)
-      .json({ message: 'username or password was incorrect' });
+    return res.status(401).json({
+      message: 'Username or password was incorrect. ',
+    });
   }
-  // no? send back 404
 
   // add user info to the session
   req.session.save(() => {
     req.session.loggedIn = true;
     req.session.userId = user.id;
-    // send user info back
-    res.status(200).json({ message: 'successfully logged in' });
+    res.status(200).json({
+      message: 'successfully logged in',
+      user_id: user.id,
+    });
   });
 });
 
 // GET /api/users/logout - logout user
 router.get('/logout', async (req, res) => {
-  // add user info to the session
   if (req.session.loggedIn) {
+    // add user info to the session
     req.session.destroy(() => {
       res.status(204).end();
     });
